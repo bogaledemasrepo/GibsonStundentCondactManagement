@@ -1,12 +1,12 @@
 import express from "express";
 import { db } from "./db";
-import { users } from "./db/schema";
+import { staff,students,conductFormats } from "./db/schema";
 
 const app = express();
 app.use(express.json());
 
 app.get("/users", async (req, res) => {
-  const allUsers = await db.select().from(users);
+  const allUsers = await db.select().from(staff);
   res.json(allUsers);
 });
 
