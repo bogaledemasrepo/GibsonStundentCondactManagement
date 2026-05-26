@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "bun index.ts",
     "db:generate":"bun run drizzle-kit generate",
-    "db:migrate":"bun run drizzle-kit migrate"
+    "db:migrate":"bun run drizzle-kit migrate",
+    "db:seed":"bun --env-file=.env ./db/seeder.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
