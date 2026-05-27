@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "bun index.ts",
-    "db:generate":"bun run drizzle-kit generate",
-    "db:migrate":"bun run drizzle-kit migrate",
-    "db:seed":"bun --env-file=.env ./db/seeder.ts"
+    "db:generate": "bun run drizzle-kit generate",
+    "db:migrate": "bun run drizzle-kit migrate",
+    "db:seed": "bun --env-file=.env ./db/seeder.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/pg": "^8.20.0",
     "drizzle-kit": "^0.31.10"
   },
@@ -19,8 +20,10 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.2",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.21.0"
   }
 }

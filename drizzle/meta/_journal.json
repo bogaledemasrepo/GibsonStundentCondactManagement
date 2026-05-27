@@ -8,6 +8,13 @@
       "when": 1779833014694,
       "tag": "0000_wealthy_starjammers",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1779834611988,
+      "tag": "0001_spotty_goblin_queen",
+      "breakpoints": true
     }
   ]
 }

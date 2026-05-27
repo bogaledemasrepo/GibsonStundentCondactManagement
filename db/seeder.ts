@@ -1,5 +1,6 @@
 import { db } from ".";
 import { staff, students, conductFormats } from "./schema"; // Adjust this path to your schema file
+import bcrypt from "bcryptjs";
 
 async function seed() {
   console.log("🌱 Starting database seeding...");
@@ -12,12 +13,16 @@ async function seed() {
     await db.delete(students);
     await db.delete(staff);
 
+    // Hash the password securely before inserting
+    console.log("🔒 Hashing credentials...");
+    const hashedPassword = await bcrypt.hash("123412341234", 10);
+
     // 2. Insert Staff (Teachers and Admins)
     console.log("👥 Inserting staff members...");
     const insertedStaff = await db.insert(staff).values([
-      { fullName: "Abebe Kebede", email: "abebe.k@school.com", role: "Teacher" },
-      { fullName: "Marta Alemu", email: "marta.a@school.com", role: "Teacher" },
-      { fullName: "Dawit Yohannes", email: "dawit.y@school.com", role: "Admin" },
+      { fullName: "Abebe Kebede", email: "abebe.k@school.com", role: "Teacher", password: hashedPassword },
+      { fullName: "Marta Alemu", email: "marta.a@school.com", role: "Teacher", password: hashedPassword },
+      { fullName: "Dawit Yohannes", email: "dawit.y@school.com", role: "Admin", password: hashedPassword },
     ]).returning({ id: staff.id });
 
     // 3. Insert Students
@@ -71,8 +76,10 @@ async function seed() {
     ]);
 
     console.log("✅ Seeding completed successfully!");
+    process.exit(0); // Add this at the very end of your try block
   } catch (error) {
     console.error("❌ Seeding failed:", error);
+    process.exit(1); // Add this inside your catch block
   }
 }
 
