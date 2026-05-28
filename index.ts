@@ -8,7 +8,7 @@ import { protect } from "./middleware";
 const app = express();
 app.use(express.json());
 
-app.get("/api/v1/login", loginUser);
+app.post("/api/v1/login", loginUser);
 
 app.get("/api/v1/students/paged",protect,getStudents)
 app.post("/api/v1/students",protect,registerStudents)
